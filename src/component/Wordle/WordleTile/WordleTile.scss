@@ -1,0 +1,62 @@
+
+.wordleTile {
+    font-size: 2rem;
+    font-weight: bold;
+    width: 60px;
+    height: 60px;
+    margin-bottom: .25rem;
+    text-transform: uppercase;
+
+    &__inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform .3s ease;
+        transform-style: preserve-3d;
+
+        &.wordleTile__inner--flip {
+            transform: rotateX(180deg);
+        }
+
+    }
+
+    &__back, &__front {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+        box-sizing: border-box;
+    }
+
+    &__front {
+        border: 2px solid #d3d6da;
+    }
+
+    &__back {
+        transform: rotateX(180deg);
+
+        &.wordleTile__back--correct {
+            color: white;
+            background-color: #6aaa64;
+            border-color: white;
+        }
+
+        &.wordleTile__back--close {
+            color: white;
+            background-color: #c9b558;
+            border-color: white;
+        }
+
+        &.wordleTile__back--wrong {
+            color: white;
+            background-color: #787c7e;
+            border-color: white;
+        }
+
+    }
+
+}

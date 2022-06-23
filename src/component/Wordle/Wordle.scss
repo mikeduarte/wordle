@@ -1,0 +1,41 @@
+
+.wordle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__guess {
+        display: flex;
+        gap: 4px;
+    }
+
+    &__correct-message {
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        color: white;
+        padding: 10px;
+        background-color: black;
+        border-radius: 4px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translate3d(-50%, -50vh, 0);
+        transition: all .3s ease;
+    }
+
+    &__correct-message--show {
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(-50%, 0, 0);
+    }
+
+    .wordle__restart {
+        margin-top: 1.5rem;
+        background-color: white;
+        font-size: 1rem;
+        color: black;
+        padding: .8rem;
+        border: 1px solid black;
+    }
+
+}
