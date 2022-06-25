@@ -39,7 +39,7 @@ export default function HelpDialog({open, close} : HelpDialogProps ) {
                 After each guess, the color of the tiles will change to show how close your guess was to the word.
             </DialogContentText>
             <hr></hr>
-            <img src="/imgs/wordle.png" srcSet="/imgs/wordle.png 2x" alt="instructions" style={{maxWidth: '100%'}} />
+            <img src="/wordle/imgs/wordle.png" srcSet="/wordle/imgs/wordle.png 2x" alt="instructions" style={{maxWidth: '100%'}} />
         </DialogContent>
       </Dialog>
     </div>
