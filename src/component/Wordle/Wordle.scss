@@ -1,8 +1,26 @@
 
+:root {
+    --correct-bg-color: #6aaa64;
+    --close-bg-color: #c9b558;
+    --wrong-bg-color: #787c7e;
+}
+
 .wordle {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    height: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px 10px;
+    box-sizing: border-box;
+
+    &__gameboard {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto;
+    }
 
     &__guess {
         display: flex;
@@ -30,12 +48,27 @@
     }
 
     .wordle__restart {
-        margin-top: 1.5rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
         background-color: white;
         font-size: 1rem;
         color: black;
         padding: .8rem;
         border: 1px solid black;
+        transform: translate3d(-50%, -50%, 0);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: all .3s ease;
+
+        &.wordle__restart--show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transition-delay: 1s;
+        }
+
     }
 
 }

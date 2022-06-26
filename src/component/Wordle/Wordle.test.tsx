@@ -20,7 +20,7 @@ describe('Testing Wordle', () => {
     const guess = 'world';
     fireEvent.type(container, guess);
     for (let i = 0; i < guess.length; i++) {
-        expect(screen.getAllByText(guess[i])).toHaveLength(2);
+        expect(screen.getAllByText(guess[i]).length).toBeGreaterThan(1);
     }
   })
 
@@ -28,8 +28,8 @@ describe('Testing Wordle', () => {
     const { container } = render(<Wordle/>);
     const guess = 'worlds';
     fireEvent.type(container, guess);
-    const s = screen.queryByText('s');
-    expect(s).not.toBeInTheDocument();
+    const s = screen.queryAllByText('s');
+    expect(s.length).toBeLessThan(2);
   })
 
   it('Typing the word "hello" should end the game', () => {
@@ -37,8 +37,8 @@ describe('Testing Wordle', () => {
     const guess = 'hello';
     fireEvent.type(container, guess);
     fireEvent.type(container, 'world');
-    const w = screen.queryByText('w');
-    expect(w).not.toBeInTheDocument();
+    const w = screen.queryAllByText('w');
+    expect(w.length).toBeLessThan(2);
   })
 
 });

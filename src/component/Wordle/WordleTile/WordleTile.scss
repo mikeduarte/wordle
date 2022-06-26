@@ -2,8 +2,8 @@
 .wordleTile {
     font-size: 2rem;
     font-weight: bold;
-    width: 60px;
-    height: 60px;
+    width: 62px;
+    height: 62px;
     margin-bottom: .25rem;
     text-transform: uppercase;
 
@@ -37,24 +37,20 @@
     }
 
     &__back {
+        color: white;
+        border-color: white;
         transform: rotateX(180deg);
 
         &.wordleTile__back--correct {
-            color: white;
-            background-color: #6aaa64;
-            border-color: white;
+            background-color:  var(--correct-bg-color);
         }
 
         &.wordleTile__back--close {
-            color: white;
-            background-color: #c9b558;
-            border-color: white;
+            background-color: var(--close-bg-color);
         }
 
         &.wordleTile__back--wrong {
-            color: white;
-            background-color: #787c7e;
-            border-color: white;
+            background-color: var(--wrong-bg-color);
         }
 
     }

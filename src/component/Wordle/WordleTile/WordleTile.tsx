@@ -3,33 +3,32 @@ import './WordleTile.scss';
 
 interface WordleTileProps {
     letter: string
-    validate: boolean
-    word: string
+    validType: string | null
     index: number
     animate: boolean
 }
 
-const WordleTile = ({letter, validate, word, index, animate} : WordleTileProps) => {
+const WordleTile = ({letter, validType, index, animate} : WordleTileProps) => {
     let className = 'wordleTile__back';
     let animateLetter = false;
-    let style = {
+    const style = {
         transitionDelay : '0s'
     }
 
     if (animate && letter) {
         animateLetter = true;
-        style.transitionDelay = `${.1 * index}s`
+        style.transitionDelay = `${.1 * index}s`;
     }
 
-    if (validate) {
-        if (word.split('').findIndex((char, idx) => letter === char.toLocaleLowerCase() && idx === index) === index) {
-            className += ' wordleTile__back--correct'
+    if (validType) {
+        if (validType === 'correct') {
+            className += ' wordleTile__back--correct';
         }
-        else if (word.toLocaleLowerCase().includes(letter)) {
-            className += ' wordleTile__back--close'
+        else if (validType === 'close') {
+            className += ' wordleTile__back--close';
         }
         else {
-            className += ' wordleTile__back--wrong'
+            className += ' wordleTile__back--wrong';
         }
     }
 

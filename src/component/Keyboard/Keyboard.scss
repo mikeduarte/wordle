@@ -1,0 +1,103 @@
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+
+    &__row {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-bottom: 6px;
+    }
+
+    &__key {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: .8rem;
+        font-weight: bold;
+        border: 0;
+        padding: 0;
+        height: 58px;
+        width: 30px;
+        border-radius: 4px;
+        cursor: pointer;
+        user-select: none;
+        background-color: rgb(211, 214, 218);
+        color: black;
+        text-transform: uppercase;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+
+        &.keyboard__key--large {
+            width: 46px;
+            font-size: .7rem;
+        }
+
+        &.keyboard__key--correct {
+            color: white;
+            background-color: var(--correct-bg-color);
+        }
+
+        &.keyboard__key--close {
+            color: white;
+            background-color: var(--close-bg-color);
+        }
+
+        &.keyboard__key--wrong {
+            color: white;
+            background-color:  var(--wrong-bg-color);
+        }
+
+    }
+
+    .keyboard__bksp {
+        box-sizing: border-box;
+        position: relative;
+        display: block;
+        width: 14px;
+        height: 14px;
+        margin-left: 4px;
+        border: 2px solid;
+        border-left: 0;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+          
+          &::after,
+          &::before {
+            content: "";
+            display: block;
+            box-sizing: border-box;
+            position: absolute
+          }
+
+          &::before {
+            background:
+                linear-gradient( to left,
+                currentColor 18px,transparent 0)
+                no-repeat center center/10px 2px;
+            border-right: 3px solid transparent;
+            box-shadow: inset 0 0 0 2px;
+            right: 2px;
+            bottom: 1px;
+            width: 8px;
+            height: 8px;
+            border-left: 3px solid transparent;
+            transform: rotate(45deg)
+          }
+
+          &::after {
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid;
+            border-left: 2px solid;
+            border-top-left-radius: 1px;
+            transform: rotate(-45deg);
+            top: 0;
+            left: -5px
+          }
+        
+    }
+
+}
+
