@@ -11,13 +11,13 @@ interface WordleTileProps {
 const WordleTile = ({letter, validType, index, animate} : WordleTileProps) => {
     let className = 'wordleTile__back';
     let animateLetter = false;
-    const style = {
-        transitionDelay : '0s'
-    }
+    let style = {}
 
     if (animate && letter) {
         animateLetter = true;
-        style.transitionDelay = `${.1 * index}s`;
+        style = {
+            transitionDelay : `${.1 * index}s`
+        }
     }
 
     if (validType) {

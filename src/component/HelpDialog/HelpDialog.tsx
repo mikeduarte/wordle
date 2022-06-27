@@ -24,7 +24,8 @@ export default function HelpDialog({open, close} : HelpDialogProps ) {
           sx={{
             position: 'absolute',
             right: 8,
-            top: 8,
+            top: 0,
+            zIndex: 99,
             color: (theme) => theme.palette.grey[500],
           }}
         >&#x2715;</IconButton>
