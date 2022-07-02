@@ -5,10 +5,11 @@ interface WordleTileProps {
     letter: string
     validType: string | null
     index: number
-    animate: boolean
+    animate: boolean,
+    invalidAnimation: boolean
 }
 
-const WordleTile = ({letter, validType, index, animate} : WordleTileProps) => {
+const WordleTile = ({letter, validType, index, animate, invalidAnimation} : WordleTileProps) => {
     let className = 'wordleTile__back';
     let animateLetter = false;
     let style = {}
@@ -33,7 +34,7 @@ const WordleTile = ({letter, validType, index, animate} : WordleTileProps) => {
     }
 
     return (
-        <div className="wordleTile" data-testid="testWordleTile">
+        <div className={`wordleTile ${invalidAnimation ? 'wordleTile--shake' : ''}`} data-testid="testWordleTile">
             <div className={`wordleTile__inner ${animateLetter ? 'wordleTile__inner--flip' : ''}`} style={style}>
                 <div className="wordleTile__front">
                     {letter}

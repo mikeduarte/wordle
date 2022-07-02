@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState, useRef } from 'react'
 import HelpDialog from '../HelpDialog/HelpDialog';
 import WordleTile from './WordleTile/WordleTile';
 import Keyboard from '../Keyboard/Keyboard';
+import { dictionary } from '../../utils/words';
 import './Wordle.scss'
 
 export interface UsedLetters {
@@ -18,6 +19,7 @@ const Wordle = ({ words }: { words?: string[] }) => {
     const [endGame, setEndGame] = useState<boolean>(false);
     const usedLettersTemp = useRef<UsedLetters>({});
     const [usedLetters, setUsedLetters] = useState<UsedLetters>({});
+    const [invalidAnimation, setInvalidAnimation] = useState<boolean>(false);
 
     const checkIfCorrect = useCallback(() => {
         const guess = guesses[currentGuess];
@@ -33,6 +35,7 @@ const Wordle = ({ words }: { words?: string[] }) => {
 
         if (correctGuess || endGame) return;
         setOpenDialog(false);
+        setInvalidAnimation(false);
 
         if (key === 'Backspace') {
             setGuesses(prevGuesses => {
@@ -42,10 +45,17 @@ const Wordle = ({ words }: { words?: string[] }) => {
             });
         }
         else if (key === 'Enter' && guesses[currentGuess].length === 5) {
-            checkIfCorrect();
-            setCurrentGuess(prevCurrentGuess => prevCurrentGuess + 1);
-            setTimeout(() => setUsedLetters({...usedLettersTemp.current}), 700);
-            return;
+            const guess = guesses[currentGuess];
+            if (!dictionary.includes(guess)) {
+                setInvalidAnimation(true);
+                setTimeout(() => setInvalidAnimation(false), 800);
+            }
+            else {
+                checkIfCorrect();
+                setCurrentGuess(prevCurrentGuess => prevCurrentGuess + 1);
+                setTimeout(() => setUsedLetters({...usedLettersTemp.current}), 700);
+                return;
+            }
         }
         else if (guesses[currentGuess].length <= 4 && key.match(/^[a-z]$/i)) {
             setGuesses(prevGuesses => {
@@ -110,7 +120,7 @@ const Wordle = ({ words }: { words?: string[] }) => {
             if (letter && !usedLettersTemp.current[letter]) usedLettersTemp.current[letter] = validType;
             else if (letter && usedLettersTemp.current[letter] && usedLettersTemp.current[letter] !== 'correct') usedLettersTemp.current[letter] = validType;
 
-            letters.push(<WordleTile key={`${index}-${i}`} letter={letter} index={i} validType={validType} animate={(currentGuess - 1) >= index}/>)
+            letters.push(<WordleTile key={`${index}-${i}`} letter={letter} index={i} validType={validType} animate={(currentGuess - 1) >= index} invalidAnimation={invalidAnimation && currentGuess === index}/>)
         }
         return letters;
     }
