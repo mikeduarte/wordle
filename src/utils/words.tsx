@@ -426,7 +426,6 @@ export const words = [
     "Young",
     "Afore",
     "After",
-    "Bothe",
     "Other",
     "Since",
     "Slash",
