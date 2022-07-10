@@ -33,7 +33,7 @@ const Wordle = ({ words }: { words?: string[] }) => {
 
     const onKeyboardEvent = useCallback((key: string) => {
 
-        if (correctGuess || endGame) return;
+        if (correctGuess || endGame || guesses[currentGuess] === undefined) return;
         setOpenDialog(false);
         setInvalidAnimation(false);
 
