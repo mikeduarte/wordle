@@ -1,4 +1,4 @@
-# Play Wordle Right Now:
+# Play Wordle Right Now!:
 https://mikeduarte.github.io/wordle
 
 
